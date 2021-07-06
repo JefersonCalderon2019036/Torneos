@@ -1,0 +1,610 @@
+{
+	"info": {
+		"_postman_id": "ba8d6168-02ef-409d-b18a-6118939f9d91",
+		"name": "GestionLigas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "axel",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "escobar",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "aescobar",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "aescobar",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWYzNjMyZTU4MzRhOTA2ZDk5OGEiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU0OTc0MzAsImV4cCI6MTYyNTUyNjIzMH0.4aWTr4a8bODOfP6NBvWlbaNjfG3T3QcTXxv3vr84mmg",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "axel",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/updateUser/:idU",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"updateUser",
+								":idU"
+							],
+							"variable": [
+								{
+									"key": "idU",
+									"value": "60e31f3632e5834a906d998a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTQ5NjkwMSwiZXhwIjoxNjI1NTI1NzAxfQ.DeoG8kKmQpQ8TCyPz7q_jsj2QF3_3HZaNGbshVQR3LA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/getUsers",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"getUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWYzNjMyZTU4MzRhOTA2ZDk5OGEiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU0OTc0MzAsImV4cCI6MTYyNTUyNjIzMH0.4aWTr4a8bODOfP6NBvWlbaNjfG3T3QcTXxv3vr84mmg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api//deleteUser/:idU",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"",
+								"deleteUser",
+								":idU"
+							],
+							"variable": [
+								{
+									"key": "idU",
+									"value": "60e31f3632e5834a906d998a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Liga",
+			"item": [
+				{
+					"name": "Crear Liga",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU0OTc5MzYsImV4cCI6MTYyNTUyNjczNn0.Yxsl-hqjoXeoPK6Qcu90EhVA-8nbdA9YXA6k52BmGZ4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "patitos",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "equipo de patitos",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "https://assets.laliga.com/assets/logos/laliga-v/laliga-v-1200x1200.png",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/createLiga/:idU",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"createLiga",
+								":idU"
+							],
+							"variable": [
+								{
+									"key": "idU",
+									"value": "60e320d17230cd05502968e9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Equipos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1MDM0MDQsImV4cCI6MTYyNTUzMjIwNH0.WCOYSkNoWHyMaIKJ5ak1WYUFq5Wza3kYQKeQo4J6X2c",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/getTeams/:idL",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"getTeams",
+								":idL"
+							],
+							"variable": [
+								{
+									"key": "idL",
+									"value": "60e32dadffd3b80a9463f472"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Liga",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU0OTgzMjYsImV4cCI6MTYyNTUyNzEyNn0.pYw6t31H44julPNdMf1FiEyvCl79YC9__lcmDL3NhZ4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "patitosss",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api//:idU/updateLiga/:idL",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"",
+								":idU",
+								"updateLiga",
+								":idL"
+							],
+							"variable": [
+								{
+									"key": "idU",
+									"value": "60e320d17230cd05502968e9"
+								},
+								{
+									"key": "idL",
+									"value": "60e3225c7230cd05502968eb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar LIga",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU0OTgzMjYsImV4cCI6MTYyNTUyNzEyNn0.pYw6t31H44julPNdMf1FiEyvCl79YC9__lcmDL3NhZ4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/:idU/deleteLiga/:idL",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								":idU",
+								"deleteLiga",
+								":idL"
+							],
+							"variable": [
+								{
+									"key": "idU",
+									"value": "60e320d17230cd05502968e9"
+								},
+								{
+									"key": "idL",
+									"value": "60e3225c7230cd05502968eb"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Team",
+			"item": [
+				{
+					"name": "Agregar Equipo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1MDE0ODgsImV4cCI6MTYyNTUzMDI4OH0.eNa5HD3PILdaXDbUpO2Cz7nWpmI6YEM9oH9e9ynzVTo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "equipo1",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"value": "https://png.pngtree.com/png-clipart/20190611/original/pngtree-soccer-team-logo-prototype-design-png-image_3178029.jpg",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/:idL/saveTeam/:idU",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								":idL",
+								"saveTeam",
+								":idU"
+							],
+							"variable": [
+								{
+									"key": "idL",
+									"value": "60e32dadffd3b80a9463f472"
+								},
+								{
+									"key": "idU",
+									"value": "60e320d17230cd05502968e9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Equipo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1MDIyNDksImV4cCI6MTYyNTUzMTA0OX0.jR8Ol6wKZknKJrJ4rZz9GJjMZoeLlc2j8xOgEjNNbqs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "equipo11",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/:idU/updateTeam/:idL/:idT",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								":idU",
+								"updateTeam",
+								":idL",
+								":idT"
+							],
+							"variable": [
+								{
+									"key": "idU",
+									"value": "60e320d17230cd05502968e9"
+								},
+								{
+									"key": "idL",
+									"value": "60e32dadffd3b80a9463f472"
+								},
+								{
+									"key": "idT",
+									"value": "60e32f9e40266f0ff46f41ec"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Equipo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1MDIyNDksImV4cCI6MTYyNTUzMTA0OX0.jR8Ol6wKZknKJrJ4rZz9GJjMZoeLlc2j8xOgEjNNbqs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/:idU/deleteTeam/:idL/:idT",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								":idU",
+								"deleteTeam",
+								":idL",
+								":idT"
+							],
+							"variable": [
+								{
+									"key": "idU",
+									"value": "60e320d17230cd05502968e9"
+								},
+								{
+									"key": "idL",
+									"value": "60e32dadffd3b80a9463f472"
+								},
+								{
+									"key": "idT",
+									"value": "60e32f9e40266f0ff46f41ec"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Marcador",
+			"item": [
+				{
+					"name": "Set Marcador",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1MDM0MDQsImV4cCI6MTYyNTUzMjIwNH0.WCOYSkNoWHyMaIKJ5ak1WYUFq5Wza3kYQKeQo4J6X2c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "jornada",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "goles1",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "goles2",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/setMarcador/:e1/:e2/:liga",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"setMarcador",
+								":e1",
+								":e2",
+								":liga"
+							],
+							"variable": [
+								{
+									"key": "e1",
+									"value": "60e32fa740266f0ff46f41ed"
+								},
+								{
+									"key": "e2",
+									"value": "60e32faa40266f0ff46f41ee"
+								},
+								{
+									"key": "liga",
+									"value": "60e32dadffd3b80a9463f472"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
