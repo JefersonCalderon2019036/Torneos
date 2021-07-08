@@ -9,6 +9,204 @@
 			"name": "Usuarios",
 			"item": [
 				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Get Usuarios",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTY5Mzc5NCwiZXhwIjoxNjI1NzIyNTk0fQ.sUQh3ugpD-qgknkYCfww68sGdn-va__h_O8hcmRv0Sk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/getUsers",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"getUsers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Usuario Id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTYwMDkwMiwiZXhwIjoxNjI1NjI5NzAyfQ.Fl46FNrUrn5X8knm8pKpihkAzFIZGQ-9bIbH8nnEXAw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/getUsersID/:idU",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"getUsersID",
+										":idU"
+									],
+									"variable": [
+										{
+											"key": "idU",
+											"value": "60e320d17230cd05502968e9"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registrar Usurario Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTU5Nzg1OCwiZXhwIjoxNjI1NjI2NjU4fQ.hjlY768-XTOp1HqhWdaPJ90SJKa71rTB29MdtM-y5oI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "axelAdmin",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "axeladmin",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "a",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "ROLE_ADMIN",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/api/saveUser/:idU",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"saveUser",
+										":idU"
+									],
+									"variable": [
+										{
+											"key": "idU",
+											"value": "60e31d3132e5834a906d9989"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Usuario Admin",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTYwNjM0OSwiZXhwIjoxNjI1NjM1MTQ5fQ.iViyyDQIlQd-LsuukU0MffmE6h7X_Ywth2lS4cebk1M",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "aaxel",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/api/updateUserAdmin/:idU",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"updateUserAdmin",
+										":idU"
+									],
+									"variable": [
+										{
+											"key": "idU",
+											"value": "60e320d17230cd05502968e9"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Usuario Admin",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTYwNjM0OSwiZXhwIjoxNjI1NjM1MTQ5fQ.iViyyDQIlQd-LsuukU0MffmE6h7X_Ywth2lS4cebk1M",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/deleteUserAdmin/:idU",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"deleteUserAdmin",
+										":idU"
+									],
+									"variable": [
+										{
+											"key": "idU",
+											"value": "60e4904f17aecd82a8a29d01"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Register",
 					"request": {
 						"method": "POST",
@@ -28,7 +226,7 @@
 								},
 								{
 									"key": "username",
-									"value": "aescobar",
+									"value": "aaescobar",
 									"type": "text"
 								},
 								{
@@ -67,12 +265,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "aescobar",
+									"value": "admin",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "123456",
+									"value": "admin",
 									"type": "text"
 								}
 							]
@@ -140,31 +338,6 @@
 					"response": []
 				},
 				{
-					"name": "Get Usuarios",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTQ5NjkwMSwiZXhwIjoxNjI1NTI1NzAxfQ.DeoG8kKmQpQ8TCyPz7q_jsj2QF3_3HZaNGbshVQR3LA",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "localhost:3000/api/getUsers",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"getUsers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Eliminar Usuario",
 					"request": {
 						"method": "DELETE",
@@ -213,13 +386,118 @@
 			"name": "Liga",
 			"item": [
 				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Listar LIgas Admin",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTU5NjU0MywiZXhwIjoxNjI1NjI1MzQzfQ.-HsTG3rcLBSKfYbuckL-HPCTJds-zPfTqn5ZuqSL-HI",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/getLigasAdmin/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"getLigasAdmin",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Liga Admin",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTU5NjU0MywiZXhwIjoxNjI1NjI1MzQzfQ.-HsTG3rcLBSKfYbuckL-HPCTJds-zPfTqn5ZuqSL-HI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "patos",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/api/updateLigaAdmin/:idL",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"updateLigaAdmin",
+										":idL"
+									],
+									"variable": [
+										{
+											"key": "idL",
+											"value": "60e32dadffd3b80a9463f472"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar LIga Admin",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMWQzMTMyZTU4MzRhOTA2ZDk5ODkiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlhdCI6MTYyNTU5NjU0MywiZXhwIjoxNjI1NjI1MzQzfQ.-HsTG3rcLBSKfYbuckL-HPCTJds-zPfTqn5ZuqSL-HI",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/deleteLigaAdmin/:idL",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"deleteLigaAdmin",
+										":idL"
+									],
+									"variable": [
+										{
+											"key": "idL",
+											"value": "60e4901e17aecd82a8a29cff"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Crear Liga",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU0OTc5MzYsImV4cCI6MTYyNTUyNjczNn0.Yxsl-hqjoXeoPK6Qcu90EhVA-8nbdA9YXA6k52BmGZ4",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGU2MWU5MjM1MTYzYTliNWNmMmFjOWMiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU2OTM4NTcsImV4cCI6MTYyNTcyMjY1N30.BrqT0Fi7jxk-mMzZ7WIJ9XSm0B0kLFYieinqJplD32g",
 								"type": "text"
 							}
 						],
@@ -228,17 +506,12 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "patitos",
+									"value": "ligaXD",
 									"type": "text"
 								},
 								{
 									"key": "descripcion",
-									"value": "equipo de patitos",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"value": "https://assets.laliga.com/assets/logos/laliga-v/laliga-v-1200x1200.png",
+									"value": "descripcion de liga",
 									"type": "text"
 								}
 							]
@@ -257,6 +530,38 @@
 							"variable": [
 								{
 									"key": "idU",
+									"value": "60e61e9235163a9b5cf2ac9c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Ligas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1OTczMTIsImV4cCI6MTYyNTYyNjExMn0.W7wtNkSQnmsWCEbRqPo5QGHf4kY51wrW6ELb_4FfQiE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/getLiga/:idUser",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"getLiga",
+								":idUser"
+							],
+							"variable": [
+								{
+									"key": "idUser",
 									"value": "60e320d17230cd05502968e9"
 								}
 							]
@@ -345,7 +650,7 @@
 					"response": []
 				},
 				{
-					"name": "Eliminar LIga",
+					"name": "Eliminar Liga",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -393,7 +698,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1MDE0ODgsImV4cCI6MTYyNTUzMDI4OH0.eNa5HD3PILdaXDbUpO2Cz7nWpmI6YEM9oH9e9ynzVTo",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGU2MWU5MjM1MTYzYTliNWNmMmFjOWMiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU2OTM4NTcsImV4cCI6MTYyNTcyMjY1N30.BrqT0Fi7jxk-mMzZ7WIJ9XSm0B0kLFYieinqJplD32g",
 								"type": "text"
 							}
 						],
@@ -402,7 +707,7 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "equipo1",
+									"value": "equipoXD4",
 									"type": "text"
 								},
 								{
@@ -432,11 +737,11 @@
 							"variable": [
 								{
 									"key": "idL",
-									"value": "60e32dadffd3b80a9463f472"
+									"value": "60e61ed835163a9b5cf2ac9e"
 								},
 								{
 									"key": "idU",
-									"value": "60e320d17230cd05502968e9"
+									"value": "60e61e9235163a9b5cf2ac9c"
 								}
 							]
 						}
@@ -549,7 +854,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGUzMjBkMTcyMzBjZDA1NTAyOTY4ZTkiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU1MDM0MDQsImV4cCI6MTYyNTUzMjIwNH0.WCOYSkNoWHyMaIKJ5ak1WYUFq5Wza3kYQKeQo4J6X2c",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGU2MWU5MjM1MTYzYTliNWNmMmFjOWMiLCJuYW1lIjoiYXhlbCIsImxhc3RuYW1lIjoiZXNjb2JhciIsImVtYWlsIjoiYSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2MjU2OTM4NTcsImV4cCI6MTYyNTcyMjY1N30.BrqT0Fi7jxk-mMzZ7WIJ9XSm0B0kLFYieinqJplD32g",
 								"type": "text"
 							}
 						],
@@ -589,16 +894,61 @@
 							"variable": [
 								{
 									"key": "e1",
-									"value": "60e32fa740266f0ff46f41ed"
+									"value": "60e61f5935163a9b5cf2ac9f"
 								},
 								{
 									"key": "e2",
-									"value": "60e32faa40266f0ff46f41ee"
+									"value": "60e61f6435163a9b5cf2aca0"
 								},
 								{
 									"key": "liga",
-									"value": "60e32dadffd3b80a9463f472"
+									"value": "60e61ed835163a9b5cf2ac9e"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Marcadores por Liga",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/getMarcadoresLiga/:idL",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"getMarcadoresLiga",
+								":idL"
+							],
+							"variable": [
+								{
+									"key": "idL",
+									"value": "60e61ed835163a9b5cf2ac9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Marcadores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/getMarcadores",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"getMarcadores"
 							]
 						}
 					},

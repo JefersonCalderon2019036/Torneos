@@ -5,55 +5,18 @@ var Marcador = require('../models/marcador.model');
 var Liga = require('../models/liga.model');
 var jwt = require('../services/jwt');
 
-/*function setMarcador(req, res){
-    var Equipo1 = req.params.e1;
-    var Equipo2 = req.params.e2;
-    var params = req.body;
-    var marcador = new Marcador();
-  //  if(params.jornada && params.goles1 && params.goles2){
-        Team.findById(Equipo1, (err, EquiposFind)=>{
-            if(err){
-                return res.status(500).send({messsage: 'No tienes permisos para realizar esta accion'})
-            }else if(EquiposFind){
-                marcador.jornada = params.jornada; 
-                marcador.goles1 = params.goles1;
-                marcador.goles2 = params.goles2;
-
-                marcador.save((err, marcadorSaved)=>{
-                    if(err){
-                        return res.status(500).send({messsage: 'Error general'})
-                    }else if(marcadorSaved){
-                        Team.findByIdAndUpdate(Equipo1, {$push: {marcador: marcadorSaved._id}}, {new: true}, (err, marcadorPush)=>{
-                        if(err){
-                            return res.status(500).send({messsage: 'Error'})
-                        }else if(marcadorPush){
-                            res.send({messsage: 'Equipo agregado al marcador', marcadorPush})
-                        }else{
-                            return res.status(500).send({messsage: 'Error'})
-                        }
-                        })
-                    }else{
-                        return res.status(500).send({messsage: 'Error'})
-                    }
-                })
-            }else{
-                return res.status(500).send({messsage: 'No existe el equipo'});
-            }
-    })
-}*/
-
 function setMarcador(req, res) {
     var marcador = new Marcador();
     var params = req.body;
-    var Equipo1 = req.params.e1;
-    var Equipo2 = req.params.e2;
+    var nombreEquipo1 = req.body.nameEquipo1;
+    var nombreEquipo2 = req.body.nameEquipo2;
     var LigaTeam = req.params.liga;
-
-    Team.findById(Equipo1, (err, teamFind) => {
+    Team.find({name: nombreEquipo1}, (err, teamFind) => {
+        console.log(teamFind)
         if (err) {
             res.status(500).send({ message: 'Error' })
         } else if (teamFind) {
-            Team.findById(Equipo2, (err, teamFind2) => {
+            Team.find({name: nombreEquipo2}, (err, teamFind2) => {
                 if (err) {
                     res.status(500).send({ message: 'Error' })
                 } else if (teamFind2) {
@@ -72,10 +35,13 @@ function setMarcador(req, res) {
                                         console.log(jornadaLimite);
                                         console.log(params.jornada);
                                         marcador.jornada = params.jornada;
+                                        marcador.nameEquipo1 = nombreEquipo1;
+                                        marcador.nameEquipo2 = nombreEquipo2;
                                         marcador.goles1 = params.goles1;
                                         marcador.goles2 = params.goles2;
-                                        marcador.equipo1 = Equipo1;
-                                        marcador.equipo2 = Equipo2;
+                                        marcador.equipo1 = teamFind;
+                                        marcador.equipo2 = teamFind2;
+                                        marcador.liga = LigaTeam;
 
                                         var diferencia1 = marcador.goles1 - marcador.goles2;
                                         var diferencia2 = marcador.goles2 - marcador.goles1;
@@ -97,34 +63,34 @@ function setMarcador(req, res) {
                                             if (err) {
                                                 res.status(500).send({ message: 'Error general' })
                                             } else if (marcadorSaved) {
-                                                Team.findByIdAndUpdate(Equipo1, { $inc: { golesFavor: marcador.goles1 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind, { $inc: { golesFavor: marcador.goles1 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo1, { $inc: { golesContra: marcador.goles2 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind, { $inc: { golesContra: marcador.goles2 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo2, { $inc: { golesFavor: marcador.goles2 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind2, { $inc: { golesFavor: marcador.goles2 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo2, { $inc: { golesContra: marcador.goles1 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind2, { $inc: { golesContra: marcador.goles1 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo1, { $inc: { partidos: 1 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind, { $inc: { partidos: 1 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo2, { $inc: { partidos: 1 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind2, { $inc: { partidos: 1 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo1, { $inc: { golesDiferencia: diferencia1 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind, { $inc: { golesDiferencia: diferencia1 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo2, { $inc: { golesDiferencia: diferencia2 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind2, { $inc: { golesDiferencia: diferencia2 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo1, { $inc: { puntos: puntos1 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind, { $inc: { puntos: puntos1 } }, { new: true }, (err, aumento) => {
                                                 })
 
-                                                Team.findByIdAndUpdate(Equipo2, { $inc: { puntos: puntos2 } }, { new: true }, (err, aumento) => {
+                                                Team.findByIdAndUpdate(teamFind2, { $inc: { puntos: puntos2 } }, { new: true }, (err, aumento) => {
                                                 })
 
                                                 res.send({ message: 'Marcador añadido', marcadorSaved })
@@ -153,6 +119,33 @@ function setMarcador(req, res) {
     })
 }
 
+function getMarcadores(req, res) {
+    Marcador.find({}).exec((err, users) => {
+        if (err) {
+            res.status(500).send({ message: 'Error general al buscar marcadores' });
+        } else if (users) {
+           res.status(200).send(users);
+        } else {
+            res.send({ message: 'No existe ningun marcador' })
+        }
+    })
+}
+
+function getMarcadoresLiga(req, res) {
+    var idLiga = req.params.idL;
+    Marcador.find({liga: idLiga}).exec((err, users) => {
+        if (err) {
+            res.status(500).send({ message: 'Error general al buscar marcadores' });
+        } else if (users) {
+           res.status(200).send(users);
+        } else {
+            res.send({ message: 'No existe ningun marcador' })
+        }
+    })
+}
+
 module.exports = {
-    setMarcador
+    setMarcador,
+    getMarcadores,
+    getMarcadoresLiga
 }

@@ -141,46 +141,52 @@ function deleteTeam(req, res) {
     let ligaId = req.params.idL;
     let teamId = req.params.idT;
 
-    if (userId != req.user.sub) {
-        return res.send({ message: 'No tienes permiso para realizar esta accion' })
-    } else {
-        Liga.findByIdAndUpdate(ligaId, { $inc: { teamCount: -1 } }, { new: true }, (err, restarEquipo) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error al restar el equipo' })
-            } else if (restarEquipo) {
-                Liga.findByIdAndUpdate({ _id: ligaId, teams: teamId },
-                    { $pull: { teams: teamId } }, { new: true }, (err, teamPull) => {
-                        if (err) {
-                            return res.status(500).send({ message: 'Error general' })
-                        } else if (teamPull) {
-                            Team.findByIdAndRemove(teamId, (err, teamRemoved) => {
+    Liga.findByIdAndUpdate(ligaId, { $inc: { teamCount: -1 } }, { new: true }, (err, restarEquipo) => {
+        if (err) {
+            return res.status(500).send({ message: 'Error al restar el equipo' })
+        } else if (restarEquipo) {
+            Liga.findByIdAndUpdate({ _id: ligaId, teams: teamId },
+                { $pull: { teams: teamId } }, { new: true }, (err, teamPull) => {
+                    if (err) {
+                        return res.status(500).send({ message: 'Error general' })
+                    } else if (teamPull) {
+                        Team.findByIdAndRemove(teamId, (err, teamRemoved) => {
+                            if (err) {
+                                return res.status(500).send({ message: 'Error general' })
+                            } else if (teamRemoved) {
                                 if (err) {
                                     return res.status(500).send({ message: 'Error general' })
                                 } else if (teamRemoved) {
-                                    if (err) {
-                                        return res.status(500).send({ message: 'Error general' })
-                                    } else if (teamRemoved) {
-                                        return res.send({ message: 'Equipo eliminado', teamPull })
-                                    } else {
-                                        return res.send({ message: 'No se eliminó el equipo' })
-                                    }
+                                    return res.send({ message: 'Equipo eliminado', teamPull })
                                 } else {
                                     return res.send({ message: 'No se eliminó el equipo' })
                                 }
-                            })
-                        } else {
-                            return res.send({ message: 'No se pudo eliminar el equipo' })
-                        }
-                    }).populate('teams')
-            } else {
-                return res.send({ message: 'No se restó el equipo' })
-            }
-        })
-    }
+                            } else {
+                                return res.send({ message: 'No se eliminó el equipo' })
+                            }
+                        })
+                    } else {
+                        return res.send({ message: 'No se pudo eliminar el equipo' })
+                    }
+                }).populate('teams')
+        } else {
+            return res.send({ message: 'No se restó el equipo' })
+        }
+    })
+}
+
+function getteamid(req,res){
+    var teamsid = req.params.teamsid;
+    Team.findOne({$or: [{_id: teamsid}]}).exec((err, userGetId)=>{
+        if(err) return res.status(500).send({mensaje: 'Error en la peticion'})
+        if(!userGetId) return res.status(404).send({mensaje: 'Error al obtener los datos del equipo'})
+        return res.status(200).send(userGetId)
+    })
 }
 
 module.exports = {
     createTeam,
     updateTeam,
-    deleteTeam
+    deleteTeam,
+    getteamid
 }

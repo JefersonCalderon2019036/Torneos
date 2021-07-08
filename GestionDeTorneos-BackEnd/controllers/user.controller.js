@@ -224,98 +224,18 @@ function updateUser(req, res) {
 
 function deleteUser(req, res) {
     let userId = req.params.idU;
-    let params = req.body;
 
-    if (userId != req.user.sub) {
-        res.status(403).send({ message: 'No tienes permisos para Eliminar otro usuario' });
-    } else {
-        User.findOne({ _id: userId }, (err, userFind) => {
-            if (err) {
-                res.status(500).send({ message: 'Error general' });
-                console.log(err);
-            } else if (userFind) {
-                bcrypt.compare(params.password, userFind.password, (err, passVerified) => {
-                    if (err) {
-                        res.status(500).send({ message: 'Error general al veficar la contraseña' })
-                        console.log(err)
-                    } else if (passVerified) {
-                        User.findByIdAndRemove(userId, (err, userRemoved) => {
-                            if (err) {
-                                res.status(500).send({ message: 'Error general al eliminar el usuario' });
-                                console.log(err);
-                            } if (userRemoved) {
-                                res.send({ message: 'Usuario eliminado', userRemoved })
-                            } else {
-                                res.send({ message: 'Usuario no eliminado' });
-                            }
-                        })
-                    } else {
-                        res.status(401).send({ message: 'Contraseña incorrecta' })
-                    }
-                })
-            } else {
-                res.status(404).send({ message: 'Usuario no existente' })
-            }
-        })
-    }
-}
-
-/*function uploadImage(req, res) {
-    var userId = req.params.id;
-    var update = req.body;
-    var fileName;
-
-    if (userId != req.user.sub) {
-        res.status(403).send({ message: 'No tienes permisos para cambiar la foto de otro usuario' });
-    } else {
-        if (req.files) {
-            var filePath = req.files.image.path;
-
-            var fileSplit = filePath.split('\\');
-            var fileName = fileSplit[2];
-
-            var extension = fileName.split('\.');
-            var fileExt = extension[1];
-            if (fileExt == 'png' ||
-                fileExt == 'jpg' ||
-                fileExt == 'jpeg' ||
-                fileExt == 'gif') {
-                User.findByIdAndUpdate(userId, { image: fileName }, { new: true }, (err, userUpdated) => {
-                    if (err) {
-                        res.status(500).send({ message: 'Error general' });
-                    } else if (userUpdated) {
-                        res.send({ user: userUpdated, userImage: userUpdated.image });
-                    } else {
-                        res.status(400).send({ message: 'No se ha podido actualizar' });
-                    }
-                })
-            } else {
-                fs.unlink(filePath, (err) => {
-                    if (err) {
-                        res.status(500).send({ message: 'Extensión no válida y error al eliminar archivo' });
-                    } else {
-                        res.send({ message: 'Extensión no válida' })
-                    }
-                })
-            }
+    User.findByIdAndRemove(userId, (err, userRemoved) => {
+        if (err) {
+            res.status(500).send({ message: 'Error general al eliminar el usuario' });
+            console.log(err);
+        } if (userRemoved) {
+            res.send({ message: 'Usuario eliminado', userRemoved })
         } else {
-            res.status(400).send({ message: 'No has enviado imagen a subir' })
-        }
-    }
-}
-
-function getImage(req, res) {
-    var fileName = req.params.fileName;
-    var pathFile = './uploads/user/' + fileName;
-
-    fs.exists(pathFile, (exists) => {
-        if (exists) {
-            res.sendFile(path.resolve(pathFile));
-        } else {
-            res.status(404).send({ message: 'Imagen inexistente' });
+            res.send({ message: 'Usuario no eliminado' });
         }
     })
-}*/
+}
 
 function getUsers(req, res) {
     User.find({}).exec((err, users) => {
@@ -330,51 +250,37 @@ function getUsers(req, res) {
 }
 
 function deleteUserAdmin (req, res){
-    var idUser = req.params.idUser
-    var idUserDelete = req.params.idUserDelete
+    var idUser = req.params.idU
 
-    User.findOne({$or: [{_id: idUser}]}).exec((err, userGetId)=>{
+    if(req.user.role != "ROLE_ADMIN"){
+        return res.status(404).send({mensaje: 'No eres administrador, no puedes editar este usuario'})
+    }
+
+    User.findByIdAndDelete(idUser, (err, userDelete) =>{
         if(err) return res.status(500).send({mensaje: 'Error en la peticion'})
-        if(!userGetId) return res.status(404).send({mensaje: 'Error al obtener los datos del usuario'})
-        
-        if(userGetId.role != "ROLE_ADMIN"){
-            return res.status(500).send({ message: "No tiene permisos para eliminar este usuario"})
-        }else{
-            User.findOneAndDelete(idUserDelete, (err, userDelete) =>{
-                if(err) return res.status(500).send({mensaje: 'Error en la peticion'})
-                if(!userDelete) return res.status(200).send({mensaje: 'No se ha podido eliminar usuario'})
-        
-                return res.status(200).send({mensaje: 'Se elemino de forma correcta el usuario con id:' + idUser})
-            })
-        }
-    })
+        if(!userDelete) return res.status(200).send({mensaje: 'No se ha podido eliminar usuario'})
 
+        return res.status(200).send({mensaje: 'Se elemino de forma correcta el usuario con id:' + idUser})
+    })
 }
 
 function updateUserAdmin (req, res){
-    var idUser = req.params.idUser
-    var idupdate = req.params.idupdate
+    var idUser = req.params.idU
     var params = req.body
-   
-    User.findOne({$or: [{_id: idUser}]}).exec((err, userGetId)=>{
-        if(err) return res.status(500).send({mensaje: 'Error en la peticion busqueda del usuario'})
-        if(!userGetId) return res.status(404).send({mensaje: 'Error al obtener los datos del usuario'})
-        
-        if(userGetId.role != "ROLE_ADMIN"){
-            return res.status(500).send({ message: "No tiene permisos para eliminar este usuario"})
-        }else{
-            User.findByIdAndUpdate(idupdate, params, { new: true }, (err, usuarioActualizado)=>{
-                if(err) return res.status(500).send({ mensaje: 'Error en la peticion' });
-                if(!usuarioActualizado) return res.status(500).send({ mensaje: 'No se ha podido actualizar al Usuario' });
-                // usuarioActualizado.password = undefined;
-                return res.status(200).send({ usuarioActualizado });
-            })
-        }
+    delete params.password
+    if(req.user.role != "ROLE_ADMIN"){
+        return res.status(404).send({mensaje: 'No eres administrador, no puedes editar este usuario'})
+    }
+    User.findByIdAndUpdate(idUser, params, {new: true}, (err, userUpdate)=>{
+        if(err) return res.status(500).send({mensaje: 'Error en la peticion'})
+        if(!userUpdate) return res.status(404).send({mensaje: 'No se ha podido actualizar el usuario'})
+
+        return res.status(200).send(userUpdate)
     })
 }
 
 function getUserId (req, res){
-    var idUser = req.params.idUser
+    var idUser = req.params.idU
 
     User.findOne({$or: [{_id: idUser}]}).exec((err, userGetId)=>{
         if(err) return res.status(500).send({mensaje: 'Error en la peticion'})
